@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>For in vues</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app" class="">
+        <ul>
+            <!-- Puedo pasar el indice -->
+            <!-- Puedo escribi tanto of como in en la declaracion del for -->
+            <template v-for="(pais, indice) of paises">
+                <li> {{indice + 1}} - {{pais.nombre}} </li>
+                <hr>
+            </template>
+
+        </ul>
+        <!-- Objetos con v-for -->
+        <ul>
+            <!-- tambien tengo acceso al key si estoy recorriendo un objeto -->
+            <li v-for="(valor, llave) in empleado">
+                {{llave}} -> {{valor}}
+            </li>
+        </ul>
+    </div>
+    <script src="vue.js"></script>
+</body>
+
+</html>

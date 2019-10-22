@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Instalando Vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app" class="">
+        <h1> {{mensaje}} </h1>
+        <button v-on:click="mensaje = 'Este es el nuevo mensaje'">Cambiar Mensaje</button>
+        <button v-on:click="destruir">Destruir instancia</button>
+
+    </div>
+
+    <script src="vue.js"></script>
+</body>
+
+</html>
