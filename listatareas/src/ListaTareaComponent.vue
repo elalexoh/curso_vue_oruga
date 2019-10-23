@@ -19,5 +19,16 @@
 <script>
 export default {
     props: ['tareas'],
+    methods: {
+       dropTask(index) {
+            this.tareas.splice(index, 1);
+        }
+    }
 }
 </script>
+<style lang="scss" scoped>
+    .terminada {
+        color: gray;
+        text-decoration: line-throught;
+    }
+</style>
