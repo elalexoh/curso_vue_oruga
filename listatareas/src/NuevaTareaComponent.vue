@@ -14,13 +14,14 @@
     </div>
 </template>
 <script>
+import { bus } from './main.js';
 export default {
     data(){
         return {
             nuevaTarea: ''
         }
     },
-    props: ['tareas'],
+    props: ['tareas', 'actualizarContador'],
     methods: {
         addTask(){
             //trim elimina los espacios
@@ -30,10 +31,21 @@ export default {
                     texto: texto,
                     terminada: false
                 })
+                //comunicando hijos a traves del prop
+                //this.actualizarContador();
+
+                //comunicando hijos a traves de emit
+                //this.$emit('incrementarContador', 1);
+
+                //comunicando hijos a traves de bus (Service)
+                bus.actualizarContador(this.tareas.length);
             }
             //reinicio el atributo
             this.nuevaTarea = '';
         }
+    },
+    created(){
+        bus.actualizarContador(this.tareas.length);
     }
 }
 </script>
