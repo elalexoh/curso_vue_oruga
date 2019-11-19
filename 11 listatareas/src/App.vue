@@ -1,22 +1,21 @@
 <template>
   <div id="app" class="container">
     <div class="jumbotron">
-      <titulo 
-        :titulo="titulo"
-        :numTareas="numTareas"></titulo>
-      <nueva-tarea 
+      <titulo :titulo="titulo" :numTareas="numTareas"></titulo>
+      <nueva-tarea
         :tareas="tareas"
         :actualizarContador="actualizarContador"
-        @incrementarContador="numTareas += $event" ></nueva-tarea>
+        @incrementarContador="numTareas += $event"
+      ></nueva-tarea>
       <listado-de-tareas :tareas="tareas"></listado-de-tareas>
     </div>
   </div>
 </template>
 
 <script>
-import Titulo from './TituloComponent.vue';
-import NuevaTarea from './NuevaTareaComponent.vue';
-import ListadoDeTareas from './ListaTareaComponent.vue';
+import Titulo from "./TituloComponent.vue";
+import NuevaTarea from "./NuevaTareaComponent.vue";
+import ListadoDeTareas from "./ListaTareaComponent.vue";
 export default {
   components: {
     Titulo,
@@ -27,26 +26,30 @@ export default {
     return {
       titulo: "Mi listado de Tareas",
       numTareas: 3,
-      tareas: [
-          {
-              texto: 'Aprender Vue.js',
-              terminada: false
-          },
-          {
-              texto: 'Aprender Angular 2',
-              terminada: false
-          },
-          {
-              texto: 'Aprender Ionic 2',
-              terminada: false
-          }
-      ],
+      tareas: []
     };
   },
   methods: {
-    actualizarContador(){
+    actualizarContador() {
       this.numTareas++;
     }
+  },
+  created() {
+    this.$http
+      .get("tareas.json")
+      .then(respuesta => {
+        return respuesta.json();
+      })
+      .then(respuestaJson => {
+        for (let id in respuestaJson) {
+          let tarea = {
+            id: id,
+            texto: respuestaJson[id].texto,
+            terminada: respuestaJson[id].terminada
+          };
+          this.tareas.push(tarea);
+        }
+      });
   }
 };
 </script>

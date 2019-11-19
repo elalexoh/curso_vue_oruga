@@ -51,7 +51,7 @@
           <div class="form-group">
             <label for="pais">Pais</label>
             <select class="form-control" v-model="usuario.pais">
-              <option v-for="pais in paises">{{pais}}</option>
+              <option v-for="(pais, index) in paises" :key="index">{{pais}}</option>
             </select>
           </div>
           <div class="form-group">
